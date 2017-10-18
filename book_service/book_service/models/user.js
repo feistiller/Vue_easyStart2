@@ -20,6 +20,11 @@ user.statics.findByUsername = function(name,callBack){
 user.statics.findUserLogin = function(name,password,callBack){
     this.find({username:name,password:password},callBack);
 };
+//验证邮箱和电话以及用户名找到用户
+user.statics.findUserPassword = function(name,mail,phone,callBack){
+    this.find({username:name,userMail:mail,userPhone:phone},callBack);
+};
+//获得其用户的权限
 
 var userModel= mongoose.model('user',user);
 module.exports = userModel;

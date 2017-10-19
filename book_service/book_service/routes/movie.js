@@ -69,6 +69,18 @@ router.post('/movie/getIndexMovie', function (req, res, next) {
     }
 });
 
+//获取一个电影的评论
+router.post('/movie/getMovieComment', function (req, res, next) {
+    if(req.body.id) {
+        comment.findByMovieId(req.body.id, function (err, allComment) {
+            res.json({status: 0, message: '获取成功', data:allComment})
+        })
+    }else{
+        res.json({status:1,message:'获取失败'})
+    }
+});
+
+
 //点赞的电影
 router.post('/movie/support', function (req, res, next) {
     if(req.body.id) {

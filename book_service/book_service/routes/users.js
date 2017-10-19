@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 var user = require('../models/user');
 var crypto = require('crypto');
-var mail=require('../models/mail');
-const init_token = 'TKL02o'
+var movie=require('../models/movie');
+var mail = require('../models/mail');
+var comment = require('../models/comment');
+const init_token = 'TKL02o';
 /* GET users listing. */
 //用户登录接口
 router.post('/login', function (req, res, next) {
@@ -64,21 +66,50 @@ router.post('/register', function (req, res, next) {
 
 });
 //用户提交评论
-router.post('/postConmment', function (req, res, next) {
+router.post('/postCommment', function (req, res, next) {
+    if (!req.body.username) {
+        var username="匿名用户"
+    }
+    if (!req.body.movie_id) {
+        res.json({status: 1, message: "电影id为空"})
+    }
+    if (!req.body.context) {
+        res.json({status: 1, message: "评论内容为空"})
+    }
 
+    var saveComment = new comment({
+        movie_id: req.body.movie_id,
+        user_id: req.body.username?req.body.username:username,
+        context: req.body.context,
+        check: 0
+    })
+    saveComment.save(function (err) {
+        res.json({status: 1, message: err})
+    })
 });
 //用户点赞
 router.post('/support', function (req, res, next) {
-
+    if (!req.body.movieId) {
+        res.json({status: 1, message: "电影id传递失败"})
+    }
+    movie.findById(req.body.movieId,function (err,supportMovie) {
+        movie.update({_id: req.body.movieId}, {movieNumSuppose:supportMovie.movieNumSuppose+1}, function (err, updateMovie) {
+            res.json({status: 0, message: '点赞成功', data: updateMovie})
+        })
+    })
 });
-//用户下载
+//用户下载只返回下载地址
 router.post('/download', function (req, res, next) {
-
+    if (!req.body.movieId) {
+        res.json({status: 1, message: "电影id传递失败"})
+    }
+    movie.findById(req.body.movieId,function (err,supportMovie) {
+        movie.update({_id: req.body.movieId}, {movieNumDownload:supportMovie.movieNumDownload+1}, function (err, updateMovie) {
+            res.json({status: 0, message: '下载成功', data: supportMovie.movieDownload})
+        })
+    })
 });
-//用户获得权限
-router.post('/getPower', function (req, res, next) {
 
-});
 //用户找回密码
 router.post('/findPassword', function (req, res, next) {
 //需要输入用户的邮箱信息和手机信息，同时可以更新密码
@@ -167,10 +198,10 @@ router.post('/sendEmail', function (req, res, next) {
         res.json({status: 1, message: '内容不能为空'})
     }
     if (req.body.token == getMD5Password(req.body.user_id)) {
-    //    存入数据库之前需要先去拿出发送至的user_id
-        user.findByUsername(req.body.toUserName,function (err, toUser) {
-            if(toUser){
-                var NewEmail=new mail({
+        //    存入数据库之前需要先去拿出发送至的user_id
+        user.findByUsername(req.body.toUserName, function (err, toUser) {
+            if (toUser) {
+                var NewEmail = new mail({
                     fromUser: req.body.user_id,
                     toUser: toUser[0].user_id,
                     title: req.body.title,
@@ -179,11 +210,11 @@ router.post('/sendEmail', function (req, res, next) {
                 NewEmail.save(function () {
                     res.json({status: 0, message: "发送成功"})
                 })
-            }else{
-                res.json({status:1,message:'您发送的对象不存在'})
+            } else {
+                res.json({status: 1, message: '您发送的对象不存在'})
             }
         })
-    }else {
+    } else {
         res.json({status: 1, message: "用户登录错误"})
     }
 

@@ -26,7 +26,7 @@ router.get('/mongooseTest', function (req, res, next) {
 });
 //显示主页的推荐大图等
 router.post('/showIndex', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+
 });
 //显示所有的排行榜，也就是对于电影字段index的样式
 router.post('/showRanking', function(req, res, next) {

@@ -5,6 +5,7 @@ var movie = require('../models/movie');
 var comment =require('../models/comment');
 var article=require('../models/article');
 var recommend=require('../models/recommend');
+var crypto = require('crypto');
 const init_token = 'TKL02o'
 
 //后台管理需要验证其用户的后台管理权限

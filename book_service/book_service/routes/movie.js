@@ -39,8 +39,8 @@ router.post('/movie/detail', function (req, res, next) {
 //获取相关电影的评论
 router.post('/movie/comment', function (req, res, next) {
     if(req.body.id) {
-        movie.findById(req.body.id, function (err, getMovie) {
-            res.json({status: 0, message: '获取成功', data: {downloadSrc: getMovie.movieDownload}})
+        comment.findByMovieId(req.body.id, function (err, getComment) {
+            res.json({status: 0, message: '获取成功', data: {downloadSrc: getComment.movieDownload}})
         })
     }else{
         res.json({status:1,message:'获取失败'})

@@ -5,7 +5,7 @@ var article = new mongoose.Schema({
     articleContext:String,
     articleTime:String
 })
-
+//通过id查找
 article.statics.findByArticleId = function(id,callBack){
     this.find({_id:id},callBack);
 };

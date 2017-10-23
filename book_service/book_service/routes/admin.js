@@ -9,9 +9,6 @@ var crypto = require('crypto');
 const init_token = 'TKL02o'
 
 //后台管理需要验证其用户的后台管理权限
-router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Express'});
-});
 //后台管理admin，添加新的电影
 router.post('/admin/movieAdd', function (req, res, next) {
 

@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var recommend = require('../models/recommend')
 var movie = require('../models/movie');
 var article=require('../models/article');
+var user=require('../models/user');
 /* GET home page. */
 //主页
 router.get('/', function (req, res, next) {
@@ -27,19 +28,19 @@ router.get('/mongooseTest', function (req, res, next) {
     res.send('数据库连接测试');
 });
 //显示主页的推荐大图等
-router.post('/showIndex', function (req, res, next) {
+router.get('/showIndex', function (req, res, next) {
     recommend.findAll(function (err, getRecommend) {
         res.json({status: 0, message: "获取推荐", data: getRecommend})
     })
 });
 //显示所有的排行榜，也就是对于电影字段index的样式
-router.post('/showRanking', function (req, res, next) {
+router.get('/showRanking', function (req, res, next) {
     movie.find({movieMainPage: true}, function (err, getMovies) {
         res.json({status: 0, message: "获取主页", data: getMovies})
     })
 });
 //显示文章列表
-router.post('/showArticle', function (req, res, next) {
+router.get('/showArticle', function (req, res, next) {
     article.findAll(function (err, getArticles) {
         res.json({status: 0, message: "获取主页", data: getArticles})
     })
@@ -56,10 +57,11 @@ router.post('/articleDetail', function (req, res, next) {
 //显示用户自己个人信息的内容
 router.post('/showUser', function (req, res, next) {
     if (!req.body.user_id) {
-        res.json({status: 1, message: "用户登录状态出错"})
+        res.json({status: 1, message: "用户状态出错"})
     }
     user.findOne({_id:req.body.user_id},function (err, getUser) {
         res.json({status: 0, message: "获取成功", data: {
+            user_id:getUser._id,
             username:getUser.username,
             userMail:getUser.userMail,
             userPhone:getUser.userPhone,

@@ -2,7 +2,7 @@
 <!--此页面需要-->
   <div class="container">
   <div>
-      <movie-index-header v-for="headerItem in headerItems"></movie-index-header>   <!--  展示引入的header组件 -->
+      <movie-index-header v-for="headerItem in headerItems" :imgSrc="headerItems.img"></movie-index-header>   <!--  展示引入的header组件 -->
   </div>
   <div class="contentPic">
       <index-header-pic></index-header-pic>
@@ -51,6 +51,7 @@ export default {
     this.$http.get('http://localhost:3000/showIndex').then((data) => {
 //      console.log(data)
       this.headerItems = data.body.data.data;
+      console.log( data.body)
     })
   }
 }

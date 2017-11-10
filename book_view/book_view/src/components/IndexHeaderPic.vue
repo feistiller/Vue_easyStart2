@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="headerPic">
-    <div>
-
+    <div >
+      <img src="">
     </div>
   </div>
 </template>

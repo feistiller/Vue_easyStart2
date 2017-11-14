@@ -1,8 +1,8 @@
 <template lang="html">
     <div class="header">
-      <a href="">
+       <router-link to="">
         <div class="header_menu">主页</div>
-      </a>
+      </router-link>
       <a href="">
         <div class="header_menu">电影</div>
       </a>

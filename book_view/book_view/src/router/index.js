@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueResource from 'vue-resource'
-import MovieDetail from '../pages/movieDetail'
+import MovieDetail from '../pages/movieDetail.vue'
+import NewDetail from '../pages/newDetail.vue'
+import MovieList from '../pages/MoviesList.vue'
 // import Home from '../pages/index'
 Vue.use(Router)
 Vue.use(VueResource)
@@ -17,7 +19,15 @@ const routes = [
   {
     path:'/movieDetail',
     component:MovieDetail
-  }
+  },
+  {
+    path:'/newDetail',
+    component:NewDetail
+  },
+  {
+    path:'/movieList',
+    component:MovieList
+  },
 ]
 export default new Router({
   routes

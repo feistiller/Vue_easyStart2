@@ -4,6 +4,9 @@
   <div>
       <movie-index-header ></movie-index-header>   <!--  展示引入的header组件 -->
   </div>
+  <div class="userMessage">
+    <user-message></user-message>
+  </div>
   <div class="contentPic">
       <index-header-pic v-for="item in headerItems" :key="item._id"  :recommendImg="item.recommendImg" :recommendSrc="item.recommendSrc" :recommendTitle="item.recommendTitle"></index-header-pic>
   </div>
@@ -33,6 +36,7 @@ import CommonFooter from '../components/commonFooter'
 import NewsList from '../components/NewsList'
 import MoviesList from '../components/MoviesList'
 import IndexHeaderPic from '../components/IndexHeaderPic'
+import UserMessage from '../components/UserMessage'
 export default {
   name: 'HelloWorld',
   data () {
@@ -48,7 +52,8 @@ export default {
     CommonFooter,
     NewsList,
     MoviesList,
-    IndexHeaderPic
+    IndexHeaderPic,
+    UserMessage
   },
 
 //  这里用于获取数据，需要获得主页推荐，主页新闻列表，主页电影列表
@@ -63,7 +68,7 @@ export default {
       console.log(data.body)
     })
 //    获取所有电影
-    this.$http.get('http://localhost:3000/movie/list').then((data) => {
+    this.$http.get('http://localhost:3000/showRanking').then((data) => {
       this.movieItems = data.body.data;
       console.log( data.body)
     })
@@ -82,8 +87,13 @@ export default {
   .contentMain{
     height: 50px;
   }
-  .contentPic{
+  .userMessage{
     padding-top:60px;
+    margin-top:-10px;
+    margin-left: -10px;
+  }
+  .contentPic{
+    padding-top:5px;
   }
   .contentLeft{
     width: 60%;

@@ -1,11 +1,11 @@
 <template lang="html">
     <div class="header">
-       <router-link to="">
+       <router-link to="/">
         <div class="header_menu">主页</div>
       </router-link>
-      <a href="">
+       <router-link to="/movieList">
         <div class="header_menu">电影</div>
-      </a>
+      </router-link>
     </div>
 </template>
 <script>

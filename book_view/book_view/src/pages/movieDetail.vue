@@ -27,9 +27,6 @@
 <script>
 import MovieIndexHeader from '../components/MovieIndexHeader'
 import CommonFooter from '../components/commonFooter'
-import NewsList from '../components/NewsList'
-import MoviesList from '../components/MoviesList'
-import IndexHeaderPic from '../components/IndexHeaderPic'
 
 let movie_id=0
 export default {

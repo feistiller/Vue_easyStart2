@@ -4,6 +4,7 @@ import VueResource from 'vue-resource'
 import MovieDetail from '../pages/movieDetail.vue'
 import NewDetail from '../pages/newDetail.vue'
 import MovieList from '../pages/MoviesList.vue'
+import LoginPage from '../pages/LoginPage.vue'
 // import Home from '../pages/index'
 Vue.use(Router)
 Vue.use(VueResource)
@@ -28,6 +29,10 @@ const routes = [
     path:'/movieList',
     component:MovieList
   },
+  {
+    path:'/loginPage',
+    component:LoginPage
+  }
 ]
 export default new Router({
   routes

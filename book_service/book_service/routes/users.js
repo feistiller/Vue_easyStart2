@@ -24,7 +24,7 @@ router.post('/login', function (req, res, next) {
             // res.json(userSave[0]._id)
             // var token_after = md5.update(token_before).digest('hex')
             var token_after = getMD5Password(userSave[0]._id)
-            res.json({status: 0, data: {token: token_after}, message: "用户登录成功"})
+            res.json({status: 0, data: {token: token_after,user:userSave}, message: "用户登录1成功"})
         } else {
             res.json({status: 1, message: "用户名或者密码错误"})
         }

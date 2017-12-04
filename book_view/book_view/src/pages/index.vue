@@ -58,6 +58,7 @@ export default {
 
 //  这里用于获取数据，需要获得主页推荐，主页新闻列表，主页电影列表
   created () {
+
     this.$http.get('http://localhost:3000/showIndex').then((data) => {
       this.headerItems = data.body.data;
       console.log( data.body.data)

@@ -34,6 +34,8 @@ const routes = [
     component:LoginPage
   }
 ]
-export default new Router({
-  routes
-})
+const router = new Router({routes})
+// router.beforeEach((to, from, next) => {
+//
+// })
+export default router

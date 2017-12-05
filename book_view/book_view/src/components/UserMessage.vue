@@ -5,8 +5,8 @@
       </router-link>
     </div>
     <div v-else class="header">
-       <router-link to="/userInfo?id=id">
-        <div class="header_menu">{{username}}</div>
+       <router-link :to="{path: '/userInfo', query:{ id: id }}">
+        <div class="header_menu">已登录：{{username}}</div>
       </router-link>
     </div>
 </template>.
@@ -19,14 +19,16 @@ export default {
       username:'',
     }
   },
-  create(){
+  created(){
 //    此时登录成功
-    if(this.localStorage.token){
+    let token=localStorage.getItem('token')
+    console.log(token)
+    if(token){
       this.isLogin=true
-      this.username=this.localStorage.username
-      this.id=this.localStorage.id
-
+      this.username=localStorage.getItem('username')
+      this.id=localStorage.getItem('_id')
     }else{
+
 //      this.localStorage.setItem(data.body.data);
     }
   }

@@ -25,10 +25,10 @@
             token:data.body.data.token,
             username: this.username,
           }
-          console.log(data.body.data)
+//          console.log(data.body.data.user[0])
           localStorage.setItem('token',data.body.data.token);
           localStorage.setItem('username',data.body.data.user[0].username);
-          localStorage.setItem('_id',data.body.user[0].data._id);
+          localStorage.setItem('_id',data.body.data.user[0]._id);
 //          localStorage.setItem('username',this.username);
           this.$router.go(-1)
         }

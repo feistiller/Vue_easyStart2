@@ -8,7 +8,18 @@
     <user-message></user-message>
   </div>
 <!--用户的相关信息-->
-
+<div>
+  <div class="box">用户名：{{detail.username}}</div>
+</div>
+<div>
+  <div class="box">用户邮箱：{{detail.userMail}}</div>
+</div>
+<div>
+  <div class="box">用户电话：{{detail.userPhone}}</div>
+</div>
+<div>
+  <div class="box">用户状态：{{userStatus}}</div>
+</div>
     <common-footer></common-footer>  <!--  展示引入的footer组件 -->
   </div>
 </template>
@@ -21,6 +32,8 @@ export default {
   data () {
     return {
       items: [],
+      detail:[],
+      userStatus:''
     }
   },
   components: {
@@ -34,7 +47,16 @@ export default {
     let userId=this.$route.query.id
     if(userId){
       this.$http.post('http://localhost:3000/showUser',{user_id: userId}).then((data) => {
-        this.detail = data.body.data;
+        if( data.body.status==1){
+          alert(data.body.message)
+        }else{
+          this.detail = data.body.data;
+          if(data.body.data.userStop){
+            this.userStatus="用户已经被封停"
+          }else{
+            this.userStatus="用户状态正常"
+          }
+        }
       console.log( data.body.data)
       })
     }else{
@@ -48,6 +70,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .box{
+    display: inline-flex;
+  }
   .container {
     width: 100%;
     margin: 0 auto;

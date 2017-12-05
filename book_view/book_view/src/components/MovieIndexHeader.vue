@@ -14,6 +14,7 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+
 .header{
   width: 100%;
   height: 60px;

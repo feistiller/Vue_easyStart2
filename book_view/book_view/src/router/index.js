@@ -6,6 +6,8 @@ import NewDetail from '../pages/newDetail.vue'
 import MovieList from '../pages/MoviesList.vue'
 import LoginPage from '../pages/LoginPage.vue'
 import UserInfo from '../pages/UserInfo.vue'
+import RegisterPage from '../pages/RegisterPage.vue'
+import FindPasswordPage from '../pages/FindPasswordPage.vue'
 // import Home from '../pages/index'
 Vue.use(Router)
 Vue.use(VueResource)
@@ -37,6 +39,14 @@ const routes = [
   {
     path:'/userInfo',
     component:UserInfo
+  },
+  {
+    path:'/register',
+    component:RegisterPage
+  },
+  {
+    path:'/findPassword',
+    component:FindPasswordPage
   }
 ]
 const router = new Router({routes})

@@ -82,9 +82,7 @@ export default {
   .contentMain{
     padding-top: 150px;
   }
-  .contentMainTitle{
 
-  }
   .btnPosition{
     padding-left: 48%;
   }

@@ -59,7 +59,7 @@ router.post('/showUser', function (req, res, next) {
     if (!req.body.user_id) {
         res.json({status: 1, message: "用户状态出错"})
     }
-    user.findOne(req.body.user_id,function (err, getUser) {
+    user.findById(req.body.user_id,function (err, getUser) {
         res.json({status: 0, message: "获取成功", data: {
             user_id:getUser._id,
             username:getUser.username,

@@ -1,21 +1,34 @@
 <template lang="html">
   <div>
     <div>
-    <div>
+    <div v-bind:style="{display:!showRePassword}">
     <div class="box">
              <label>输入用户名:</label>
     <input v-model="username" placeholder="用户名">
 </div>
     <div class="box">
-    <label>密码:</label>
-    <input v-model="password" placeholder="密码">
+    <label>输入邮箱:</label>
+    <input v-model="userMail" placeholder="邮箱">
     </div>
+    <div class="box">
+    <label>输入手机:</label>
+    <input v-model="userPhone" placeholder="手机">
+    </div>
+
     <div  class="box">
-    <button v-on:click=userLogin()>登录</button>
-    <button  style="margin-left: 10px" v-on:click=userRegister()>注册</button>
-    <button  style="margin-left: 10px" v-on:click=findBackPassword()>忘记密码</button>
+    <button v-on:click=checkUser()>找回密码</button>
 </div>
 
+
+</div>
+<div v-bind:style="{display:showRePassword}">
+    <div class="box" >
+    <label>输入新密码:</label>
+    <input v-model="repassword" placeholder="输入新密码">
+    </div>
+     <div  class="box">
+    <button v-on:click=checkUser()>修改密码</button>
+</div>
 </div>
 </div>
 
@@ -27,26 +40,20 @@
   export default {
     data(){
       return{
+        userMail:'',
+        userPhone:'',
         username:'',
-        password:'',
+        repassword:'',
+        showRePassword:'none'
       }
     },
     methods:{
-      userLogin:function (event) {
-      this.$http.post('http://localhost:3000/users/login',{username: this.username,password:this.password}).then((data) => {
+      checkUser:function (event) {
+      this.$http.post('http://localhost:3000/users/findPassword',{username: this.username,userMail:this.userMail,userPhone:this.userPhone}).then((data) => {
         if(data.body.status==1){
           alert(data.body.message)
         }else{
-          let save_token={
-            token:data.body.data.token,
-            username: this.username,
-          }
-//          console.log(data.body.data.user[0])
-          localStorage.setItem('token',data.body.data.token);
-          localStorage.setItem('username',data.body.data.user[0].username);
-          localStorage.setItem('_id',data.body.data.user[0]._id);
-//          localStorage.setItem('username',this.username);
-          this.$router.go(-1)
+
         }
       })
     },

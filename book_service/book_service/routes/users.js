@@ -178,7 +178,7 @@ router.post('/findPassword', function (req, res, next) {
         user.findUserPassword(req.body.username, req.body.userMail, req.body.userPhone, function (err, userFound) {
             if (userFound.length != 0) {
                 res.json({
-                    status: 1,
+                    status: 0,
                     message: "验证成功，请修改密码",
                     data: {username: req.body.username, userMail: req.body.userMail, userPhone: req.body.userPhone}
                 })

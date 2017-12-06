@@ -46,7 +46,7 @@ router.post('/register', function (req, res, next) {
     }
     user.findByUsername(req.body.username, function (err, userSave) {
         if (userSave.length != 0) {
-            res.json(userSave)
+            // res.json(userSave)
             res.json({status: 1, message: "用户已注册"})
         } else {
             var registerUser = new user({

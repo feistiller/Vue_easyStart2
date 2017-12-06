@@ -10,7 +10,7 @@
         <div class="viewNum">下载次数：{{detail.movieNumDownload}}</div>
       </div>
       <div class="">
-        <a v-bind:href=detail.movieDownload>点击下载</a>
+      <button v-on:click=movieDownload()>点击下载</button>
       </div>
       <div>
         <img class="headerImg" v-bind:src=detail.movieImg>
@@ -65,6 +65,17 @@ export default {
           alert(data_temp.message)
         }
 
+      })
+    },
+//    电影下载
+    movieDownload:function (event) {
+      this.$http.post('http://localhost:3000/movie/download',{movie_id:movie_id}).then((data1)=>{
+        if(data1.status==1){
+          alert(data1.message)
+        }else{
+//          console.log(data1.data)
+          window.location=data1.data;
+        }
       })
     }
   }

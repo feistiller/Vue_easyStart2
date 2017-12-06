@@ -14,13 +14,19 @@ router.get('/list', function (req, res, next) {
 });
 
 //获得下载地址并将更新+1
+//用户下载只返回下载地址
 router.post('/download', function (req, res, next) {
-    if(req.body.id){
-        movie.findById(req.body.id,function (err, getMovie) {
-            res.json({status:0,message:'获取成功',data:{downloadSrc:getMovie.movieDownload}})
-        })
+    if (!req.body.movie_id) {
+        res.json({status: 1, message: "电影id传递失败"})
     }else{
-        res.json({status:1,message:'获取失败'})
+        movie.findById(req.body.movie_id, function (err, supportMovie) {
+            movie.update({_id: req.body.movie_id}, {movieNumDownload: supportMovie.movieNumDownload + 1}, function (err) {
+                if (err) {
+                    res.json({status: 1, message: "下载失败", data: err})
+                }
+                res.json({status: 0, message: '下载成功', data: supportMovie.movieDownload})
+            })
+        })
     }
 
 });

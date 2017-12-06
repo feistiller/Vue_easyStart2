@@ -8,6 +8,7 @@
     <user-message></user-message>
   </div>
 <!--用户的相关信息-->
+
 <div>
   <div class="box">用户名：{{detail.username}}</div>
 </div>
@@ -19,6 +20,22 @@
 </div>
 <div>
   <div class="box">用户状态：{{userStatus}}</div>
+</div>
+<div>
+  <button v-on:click=ShowChangeUserPassword()>修改密码</button>
+</div>
+<div  v-show="showRePassword" >
+    <div class="box" >
+    <label>输入旧密码:</label>
+    <input v-model="password" placeholder="输入旧密码">
+    </div>
+    <div class="box" >
+    <label>输入新密码:</label>
+    <input v-model="repassword" placeholder="输入新密码">
+    </div>
+     <div  class="box">
+    <button v-on:click=changeUserPassword()>修改密码</button>
+</div>
 </div>
     <common-footer></common-footer>  <!--  展示引入的footer组件 -->
   </div>
@@ -33,7 +50,10 @@ export default {
     return {
       items: [],
       detail:[],
-      userStatus:''
+      userStatus:'',
+      showRePassword:false,
+      password:'',
+      repassword:''
     }
   },
   components: {
@@ -63,8 +83,22 @@ export default {
       alert("用户信息错误")
     }
   },
-  ready(){
-
+  methods:{
+    ShowChangeUserPassword(event){
+      this.showRePassword=true
+    },
+    changeUserPassword(event){
+      let token=localStorage.token
+      let user_id=localStorage._id
+        this.$http.post('http://localhost:3000/users/findPassword',{token: token,user_id:user_id,repassword:this.repassword,password:this.password}).then((data) => {
+          if(data.body.status==1){
+            alert(data.body.message)
+          }else{
+            alert(data.body.message)
+            this.$router.go(-1)
+          }
+        })
+      },
   }
 }
 </script>

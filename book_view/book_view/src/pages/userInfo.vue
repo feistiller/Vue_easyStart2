@@ -37,6 +37,12 @@
     <button v-on:click=changeUserPassword()>修改密码</button>
 </div>
 </div>
+<div style="padding-top: 10px">
+  <router-link to="/sendEmail">
+    <button>发送站内信</button>
+</router-link>
+
+</div>
     <common-footer></common-footer>  <!--  展示引入的footer组件 -->
   </div>
 </template>

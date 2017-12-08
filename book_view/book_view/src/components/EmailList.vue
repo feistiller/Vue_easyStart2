@@ -1,11 +1,17 @@
 <template lang="html">
-  <div>
-
+ <div>
+    {{title}}
+</div>
+<div>
+    {{fromUser}}
+</div>
+<div>
+    {{context}}
 </div>
 </template>
 <script>
 export default {
-  props:['recommendSrc', 'recommendImg','recommendTitle']
+  props:['title', 'fromUser','context']
 }
 </script>
 <style lang="css" scoped>

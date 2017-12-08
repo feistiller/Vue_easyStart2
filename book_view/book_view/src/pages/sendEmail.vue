@@ -10,19 +10,7 @@
 <!--用户的相关信息-->
 
 <div>
-  <div class="box">用户名：{{detail.username}}</div>
-</div>
-<div>
-  <div class="box">用户邮箱：{{detail.userMail}}</div>
-</div>
-<div>
-  <div class="box">用户电话：{{detail.userPhone}}</div>
-</div>
-<div>
-  <div class="box">用户状态：{{userStatus}}</div>
-</div>
-<div>
-  <button v-on:click=ShowChangeUserPassword()>修改密码</button>
+  <email-list v-for=""></email-list>
 </div>
 
 <div style="padding-top: 10px">

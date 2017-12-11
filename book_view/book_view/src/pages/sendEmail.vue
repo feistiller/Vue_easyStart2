@@ -8,17 +8,16 @@
     <user-message></user-message>
   </div>
 <!--用户的相关信息-->
-
+<label>收件箱</label>
 <div>
-  <email-list v-for=""></email-list>
+  <email-list v-for="item in receive_items" :title="item.title" :fromUser="item.fromUser" :context="item.context"></email-list>
+</div>
+<label>发件箱</label>
+<div>
+  <email-list v-for="item in send_items" :title="item.title" :fromUser="item.fromUser" :context="item.context"></email-list>
 </div>
 
-<div style="padding-top: 10px">
-  <router-link to="/sendEmail">
-    <button>发送站内信</button>
-</router-link>
-
-</div>
+<send-talk-box></send-talk-box>
     <common-footer></common-footer>  <!--  展示引入的footer组件 -->
   </div>
 </template>
@@ -32,7 +31,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      items: [],
+      receive_items: [],
+      send_items:[],
       detail:[],
     }
   },
@@ -47,19 +47,33 @@ export default {
 //  这里用于获取数据，需要获得主页推荐，主页新闻列表，主页电影列表
   created () {
     let userId=localStorage._id
+    let send_data={
+      token:localStorage.token,
+      user_id:localStorage._id,
+      receive:0
+    }
+    let receive_data={
+      token:localStorage.token,
+      user_id:localStorage._id,
+      receive:1
+    }
+
     if(userId){
-      this.$http.post('http://localhost:3000/showUser',{user_id: userId}).then((data) => {
+      this.$http.post('http://localhost:3000/users/showEmail',send_data).then((data) => {
         if( data.body.status==1){
           alert(data.body.message)
         }else{
-          this.detail = data.body.data;
-          if(data.body.data.userStop){
-            this.userStatus="用户已经被封停"
-          }else{
-            this.userStatus="用户状态正常"
-          }
+          this.send_items = data.body.data;
         }
       console.log( data.body.data)
+      })
+      this.$http.post('http://localhost:3000/users/showEmail',receive_data).then((data) => {
+        if( data.body.status==1){
+          alert(data.body.message)
+        }else{
+          this.receive_items = data.body.data;
+        }
+        console.log( data.body.data)
       })
     }else{
       alert("用户信息错误")

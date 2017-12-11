@@ -1,4 +1,5 @@
 <template lang="html">
+<div class="message">
  <div>
     {{title}}
 </div>
@@ -8,6 +9,7 @@
 <div>
     {{context}}
 </div>
+</div>
 </template>
 <script>
 export default {
@@ -15,4 +17,7 @@ export default {
 }
 </script>
 <style lang="css" scoped>
+  .message{
+    border: 1px solid;
+  }
 </style>

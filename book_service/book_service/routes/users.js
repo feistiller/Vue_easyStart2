@@ -84,7 +84,12 @@ router.post('/postCommment', function (req, res, next) {
         check: 0
     })
     saveComment.save(function (err) {
-        res.json({status: 1, message: err})
+        if(err){
+            res.json({status: 1, message: err})
+        }else{
+            res.json({status: 0, message: '评论成功'})
+        }
+
     })
 });
 //用户点赞

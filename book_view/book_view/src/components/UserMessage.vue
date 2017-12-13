@@ -22,13 +22,13 @@ export default {
   created(){
 //    此时登录成功
     let token=localStorage.getItem('token')
-    console.log(token)
+//    console.log(token)
     if(token){
       this.isLogin=true
       this.username=localStorage.getItem('username')
       this.id=localStorage.getItem('_id')
     }else{
-
+        console.log('用户获得登录失败');
 //      this.localStorage.setItem(data.body.data);
     }
   }

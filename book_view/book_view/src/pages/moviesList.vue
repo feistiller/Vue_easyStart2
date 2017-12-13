@@ -24,7 +24,7 @@ import CommonFooter from '../components/commonFooter'
 import MoviesList from '../components/MoviesList'
 
 export default {
-  name: 'NewDetail',
+  name: 'movieList',
   data () {
     return {
       movieItems:[]
@@ -36,7 +36,7 @@ export default {
     MoviesList
   },
 
-//  这里用于获取数据，需要获得主页推荐，主页新闻列表，主页电影列表
+//  这里用于获取数据
   created () {
 //    获取所有电影
     this.$http.get('http://localhost:3000/movie/list').then((data) => {

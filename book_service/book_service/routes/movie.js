@@ -46,8 +46,9 @@ router.post('/detail', function (req, res, next) {
 router.post('/comment', function (req, res, next) {
     if(req.body.id) {
         comment.findByMovieId(req.body.id, function (err, getComment) {
-            res.json({status: 0, message: '获取成功', data: {downloadSrc: getComment.movieDownload}})
+            res.json({status: 0, message: '获取成功', data:getComment})
         })
+
     }else{
         res.json({status:1,message:'获取失败'})
     }

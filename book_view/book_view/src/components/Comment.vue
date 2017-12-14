@@ -1,8 +1,13 @@
 <template lang="html">
 <div>
+<label >评论</label>
+<hr>
+<div>
     <li v-for="item in items">
     {{ item.username }}评论：{{item.context}}
   </li>
+</div>
+
 <div style="padding: 5px">
      <textarea v-model="context" style="width: 80%;height:50px ;" placeholder="内容"></textarea>
 </div>
@@ -36,11 +41,20 @@ export default {
   },
   methods:{
     send_comment(event){
-      let send_data={
-        movie_id:this.movie_id,
-        context:this.context,
-        username:localStorage.username
+      let send_data;
+        if(typeof(localStorage.username)!="undefined"){
+        send_data={
+          movie_id:this.movie_id,
+          context:this.context,
+          username:localStorage.username
+        }
+      }else{
+        send_data={
+          movie_id:this.movie_id,
+          context:this.context,
+        }
       }
+
       this.$http.post('http://localhost:3000/users/postCommment',send_data).then((data) => {
           alert(data.body.message)
       })

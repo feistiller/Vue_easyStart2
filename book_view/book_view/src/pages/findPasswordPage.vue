@@ -71,14 +71,7 @@
           }
         })
       },
-//      注册跳转页面
-      userRegister:function (event) {
-        this.$router.push({path:'register'})
-      },
-//      找回密码
-      findBackPassword:function (event) {
-        this.$router.push({path:'findPassword'})
-      }
+
   }
 
   }

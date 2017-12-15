@@ -38,6 +38,7 @@ export default {
   data () {
     return {
       detail: [],
+      movie_id:'',
     }
   },
   components: {

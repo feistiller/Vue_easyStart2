@@ -40,6 +40,9 @@
       return{
         username:'',
         password:'',
+        userMail:'',
+        userPhone:'',
+        rePassword:'',
       }
     },
     methods:{

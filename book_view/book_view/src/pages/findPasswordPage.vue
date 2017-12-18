@@ -14,7 +14,6 @@
     <label>输入手机:</label>
     <input v-model="userPhone" placeholder="手机">
     </div>
-
     <div  class="box">
     <button v-on:click=checkUser()>找回密码</button>
 </div>
@@ -71,7 +70,6 @@
           }
         })
       },
-
   }
 
   }

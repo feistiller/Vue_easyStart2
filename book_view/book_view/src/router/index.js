@@ -9,6 +9,7 @@ import UserInfo from '../pages/userInfo.vue'
 import RegisterPage from '../pages/registerPage.vue'
 import FindPasswordPage from '../pages/findPasswordPage.vue'
 import SendEmail from '../pages/sendEmail.vue'
+import AdminPage from '../pages/adminPage.vue'
 // import Home from '../pages/index'
 Vue.use(Router)
 Vue.use(VueResource)
@@ -52,6 +53,10 @@ const routes = [
   {
     path:'/sendEmail',
     component:SendEmail
+  },
+  {
+    path:'/admin',
+    component:AdminPage
   }
 ]
 const router = new Router({routes})

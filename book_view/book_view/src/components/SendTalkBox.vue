@@ -30,7 +30,22 @@ export default {
   },
   methods:{
     send_mail(event){
-      alert(1)
+      let send_data={
+        token:localStorage.token,
+        user_id:localStorage._id,
+        toUserName:this.toUserName,
+        title:this.title,
+        context:this.context,
+
+      }
+      this.$http.post('http://localhost:3000/users/sendEmail',send_data).then((data) => {
+        if( data.body.status==1){
+          alert(data.body.message)
+        }else{
+          alert('发送成功')
+        }
+//        console.log( data.body.data)
+      })
     }
   }
 }

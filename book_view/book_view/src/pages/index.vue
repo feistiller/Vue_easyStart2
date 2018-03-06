@@ -10,22 +10,35 @@
   <div class="contentPic">
       <index-header-pic v-for="item in headerItems" :key="item._id"  :recommendImg="item.recommendImg" :recommendSrc="item.recommendSrc" :recommendTitle="item.recommendTitle"></index-header-pic>
   </div>
-  <div class="contentMain">
-    <div>
-      <div class="contentLeft">
+  <div class="contentMain" >
+    <Row>
+    <!--改写成栅格布局-->
+    <i-col span="11" offset="1">
+    <!--使用card组件-->
+      <Card>
+        <p slot="title">
+            <Icon type="ios-film-outline"></Icon>
+            电影
+        </p>
           <ul class="cont-ul">
             <movies-list v-for="item in movieItems" :key="item._id" :id="item._id" :movieName="item.movieName" :movieTime="item.movieTime"></movies-list><!--引入MovieList-->
           </ul>
-      </div>
-</div>
-  <div>
-      <div class="contentRight">
+      </Card>
+    </i-col>
+    <i-col span="10" offset="1">
+    <!--使用card组件-->
+      <Card>
+        <p slot="title">
+            <Icon type="edit"></Icon>
+            新闻
+        </p>
           <ul class="cont-ul">
             <!-- list组件展示区，并用v-for来将数据遍历，:xx="xxx" 是用来给子组件传递数据的 -->
             <news-list v-for="item in newsItems" :key="item._id" :id="item._id"  :articleTitle="item.articleTitle" :articleTime="item.articleTime"></news-list>
           </ul>
-      </div>
-  </div>
+      </Card>
+    </i-col>
+</Row>
 </div>
     <common-footer></common-footer>  <!--  展示引入的footer组件 -->
   </div>
@@ -85,29 +98,16 @@ export default {
     margin: 0 auto;
   }
   .contentMain{
-    height: 50px;
+    padding-top: 15px;
   }
   .userMessage{
-    padding-top:60px;
-    margin-top:-10px;
-    margin-left: -10px;
+    margin-top:0px;
+    margin-left: 0px;
   }
   .contentPic{
     padding-top:5px;
   }
-  .contentLeft{
-    width: 60%;
-    float: left;
-    margin-top: 5px;
-    border-top: 1px solid #000;
-  }
-  .contentRight{
-    width: 38%;
-    margin-left:1% ;
-    float: left;
-    margin-top: 5px;
-    border-top: 1px solid #000;
-  }
+
   .cont-ul {
     padding-top: 0.5rem;
     background-color: #fff;

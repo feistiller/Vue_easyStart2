@@ -3,6 +3,10 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import ShowText from '@/components/ShowText'
 import ShowHTML from '@/components/ShowHTML'
+import JSExpression from '@/components/JSExpressionTest'
+import RobotTest from '@/components/RobotTest'
+import vueResource from 'vue-resource'
+Vue.use(vueResource)
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +25,16 @@ export default new Router({
     {
       path: '/ShowHTML',
       component: ShowHTML
+    },
+    //  Javascript表达式
+    {
+      path: '/JSExpression',
+      component: JSExpression
+    },
+    //  RobotTest
+    {
+      path: '/RobotTest',
+      component: RobotTest
     }
   ]
 })

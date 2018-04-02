@@ -6,6 +6,8 @@ import ShowHTML from '@/components/ShowHTML'
 import JSExpression from '@/components/JSExpressionTest'
 import RobotTest from '@/components/RobotTest'
 import vueResource from 'vue-resource'
+import axios from 'axios'
+Vue.use(axios)
 Vue.use(vueResource)
 Vue.use(Router)
 
